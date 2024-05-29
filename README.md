@@ -2,4 +2,4 @@
 
 ## About
 
-Container image created to compile and deploy C++ and boost applications.
+Shipshape and lightweight debian based docker image prepared and ready to build C++ and Boost Asio and Beast applications.
