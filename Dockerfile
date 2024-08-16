@@ -14,9 +14,9 @@ RUN apt update -qq \
 
 WORKDIR /srv
 
-RUN wget https://archives.boost.io/release/1.85.0/source/boost_1_85_0.tar.gz && \
-    tar -xf boost_1_85_0.tar.gz && \
-    cd boost_1_85_0 && \
+RUN wget https://archives.boost.io/release/1.86.0/source/boost_1_86_0.tar.gz && \
+    tar -xf boost_1_86_0.tar.gz && \
+    cd boost_1_86_0 && \
     sh bootstrap.sh && \
     ./b2 install release variant=release debug-symbols=on optimization=speed \
                                   --with-json \
@@ -46,7 +46,7 @@ RUN wget https://archives.boost.io/release/1.85.0/source/boost_1_85_0.tar.gz && 
                                   --with-date_time \
                                   --with-url && \
     cd .. && \
-    rm boost_1_85_0 -rf && \
-    rm boost_1_85_0.tar.gz
+    rm boost_1_86_0 -rf && \
+    rm boost_1_86_0.tar.gz
 
 WORKDIR /srv
