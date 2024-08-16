@@ -4,21 +4,20 @@ ENV TZ="UTC" \
     DEBIAN_FRONTEND=noninteractive \
     TERM=xterm-256color
 
+WORKDIR /srv
+
 RUN apt update -qq \
     && apt-get install -y -qq lsb-release gnupg git wget build-essential cmake gcc make apt-utils zip unzip tzdata libtool automake m4 re2c curl supervisor libssl-dev zlib1g-dev libcurl4-gnutls-dev libprotobuf-dev \
     && ln -fs /usr/share/zoneinfo/$TZ /etc/localtime \
     && dpkg-reconfigure -f noninteractive tzdata \
     && apt-get clean \
     && apt-get autoclean \
-    && apt-get autoremove
-
-WORKDIR /srv
-
-RUN wget https://archives.boost.io/release/1.86.0/source/boost_1_86_0.tar.gz && \
-    tar -xf boost_1_86_0.tar.gz && \
-    cd boost_1_86_0 && \
-    sh bootstrap.sh && \
-    ./b2 install release variant=release debug-symbols=on optimization=speed \
+    && apt-get autoremove \
+    && wget https://archives.boost.io/release/1.86.0/source/boost_1_86_0.tar.gz  \
+    && tar -xf boost_1_86_0.tar.gz  \
+    && cd boost_1_86_0  \
+    && sh bootstrap.sh  \
+    && ./b2 install release variant=release debug-symbols=on optimization=speed \
                                   --with-json \
                                   --with-thread \
                                   --with-headers \
@@ -44,9 +43,7 @@ RUN wget https://archives.boost.io/release/1.86.0/source/boost_1_86_0.tar.gz && 
                                   --with-atomic \
                                   --with-filesystem \
                                   --with-date_time \
-                                  --with-url && \
-    cd .. && \
-    rm boost_1_86_0 -rf && \
-    rm boost_1_86_0.tar.gz
-
-WORKDIR /srv
+                                  --with-url  \
+    && cd ..  \
+    && rm boost_1_86_0 -rf  \
+    && rm boost_1_86_0.tar.gz
