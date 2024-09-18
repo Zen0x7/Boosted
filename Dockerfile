@@ -46,4 +46,15 @@ RUN apt update -qq \
                                   --with-url  \
     && cd ..  \
     && rm boost_1_86_0 -rf  \
-    && rm boost_1_86_0.tar.gz
+    && rm boost_1_86_0.tar.gz \
+    && git clone https://github.com/trusch/libbcrypt \
+    && cd libbcrypt \
+    && mkdir build \
+    && cd build \
+    && cmake .. \
+    && make \
+    && make install \
+    && ldconfig \
+    && cd .. \
+    && cd .. \
+    && rm libbcrypt -rf
