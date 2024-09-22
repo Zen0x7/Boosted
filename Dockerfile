@@ -66,4 +66,23 @@ RUN apt update -qq \
     && cmake --build build --parallel \
     && cmake --install build \
     && cd .. \
-    && rm sentry -Rf
+    && rm sentry -rf \
+    && git clone https://github.com/karastojko/mailio.git \
+    && cd mailio \
+    && cmake . \
+    && make install \
+    && cd .. \
+    && rm mailio -rf \
+    && git clone https://github.com/nlohmann/json.git \
+    && cd json \
+    && cmake . \
+    && make \
+    && make install \
+    && cd .. \
+    && rm json -rf \
+    && git clone https://github.com/pantor/inja.git \
+    && cd inja \
+    && cmake . -DBUILD_TESTING=OFF -DINJA_BUILD_TESTS=OFF -DBUILD_BENCHMARK=OFF -DCOVERALLS=OFF \
+    && make install \
+    && cd .. \
+    && rm inja -rf
