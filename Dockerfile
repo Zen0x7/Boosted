@@ -57,9 +57,8 @@ RUN apt update -qq \
     && ldconfig \
     && cd .. \
     && cd .. \
-    && rm libbcrypt -rf
-
-RUN wget https://github.com/getsentry/sentry-native/releases/download/0.7.9/sentry-native.zip \
+    && rm libbcrypt -rf \
+    && wget https://github.com/getsentry/sentry-native/releases/download/0.7.9/sentry-native.zip \
     && unzip sentry-native.zip -d sentry \
     && rm sentry-native.zip \
     && cd sentry \
