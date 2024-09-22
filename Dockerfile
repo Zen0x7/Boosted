@@ -57,4 +57,13 @@ RUN apt update -qq \
     && ldconfig \
     && cd .. \
     && cd .. \
-    && rm libbcrypt -rf
+    && rm libbcrypt -rf \
+    && wget https://github.com/getsentry/sentry-native/releases/download/0.7.9/sentry-native.zip \
+    && unzip sentry-native.zip -d sentry \
+    && rm sentry-native.zip \
+    && cd sentry \
+    && cmake -B build -D SENTRY_BACKEND=crashpad -D CMAKE_BUILD_TYPE=RelWithDebInfo \
+    && cmake --build build --parallel \
+    && cmake --install build \
+    && cd .. \
+    && rm sentry -Rf
