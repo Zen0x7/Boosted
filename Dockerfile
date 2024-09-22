@@ -66,4 +66,8 @@ RUN apt update -qq \
     && cmake --build build --parallel \
     && cmake --install build \
     && cd .. \
-    && rm sentry -Rf
+    && rm sentry -Rf \
+    && git clone https://github.com/karastojko/mailio.git \
+    && cd mailio \
+    && make \
+    && make install
