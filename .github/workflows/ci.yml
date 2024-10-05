@@ -7,8 +7,13 @@ jobs:
   docker:
     strategy:
       matrix:
-        name: [ amd64, arm64, arm-v7 ]
-        os: [ linux/amd64, linux/arm64, linux/arm/v7 ]
+        include:
+          - short: amd64
+            version: linux/amd64
+          - short: arm64
+            version: linux/arm64
+          - short: arm7
+            version: linux/arm/v7
     runs-on: ubuntu-latest
     steps:
       -
@@ -28,5 +33,5 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: iantorres/boosted:${{ matrix.os }}-latest
-          platforms: ${{ matrix.os }}
+          tags: iantorres/boosted:${{ matrix.short }}-latest
+          platforms: ${{ matrix.version }}
