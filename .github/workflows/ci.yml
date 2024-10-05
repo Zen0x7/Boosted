@@ -5,14 +5,12 @@ on:
 
 jobs:
   docker:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
-          - os: ubuntu-latest
-            arch: amd64
-          - os: ubuntu-24.04-arm
-            arch: arm64
+          - arch: amd64
+          - arch: arm64
     steps:
       -
         name: Set up QEMU
@@ -31,4 +29,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: iantorres/boosted:latest-${{matrix.arch}}
+          tags: iantorres/boosted:latest-${{ matrix.arch }}
