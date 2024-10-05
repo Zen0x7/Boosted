@@ -6,11 +6,6 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - arch: amd64
-          - arch: arm64
     steps:
       -
         name: Set up QEMU
@@ -30,3 +25,4 @@ jobs:
         with:
           push: true
           tags: iantorres/boosted:latest-${{ matrix.arch }}
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
