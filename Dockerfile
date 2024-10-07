@@ -17,7 +17,7 @@ RUN apt update -qq \
     && tar -xf boost_1_86_0.tar.gz  \
     && cd boost_1_86_0  \
     && sh bootstrap.sh  \
-    && ./b2 install release variant=release debug-symbols=on optimization=speed \
+    && ./b2 install release variant=release debug-symbols=off optimization=speed \
                                   --with-json \
                                   --with-thread \
                                   --with-headers \
@@ -62,27 +62,17 @@ RUN apt update -qq \
     && unzip sentry-native.zip -d sentry \
     && rm sentry-native.zip \
     && cd sentry \
-    && cmake -B build -D SENTRY_BACKEND=crashpad -D CMAKE_BUILD_TYPE=RelWithDebInfo \
+    && cmake -B build -D SENTRY_BACKEND=crashpad -D CMAKE_BUILD_TYPE=Release \
     && cmake --build build --parallel \
     && cmake --install build \
     && cd .. \
     && rm sentry -rf \
     && git clone https://github.com/karastojko/mailio.git \
     && cd mailio \
-    && cmake . \
+    && cmake . -DMAILIO_BUILD_TESTS=OFF \
+                -DMAILIO_DYN_LINK_TESTS=OFF \
+                -DMAILIO_BUILD_EXAMPLES=OFF \
+                -DMAILIO_BUILD_DOCUMENTATION=OFF \
     && make install \
     && cd .. \
-    && rm mailio -rf \
-    && git clone https://github.com/nlohmann/json.git \
-    && cd json \
-    && cmake . \
-    && make \
-    && make install \
-    && cd .. \
-    && rm json -rf \
-    && git clone https://github.com/pantor/inja.git \
-    && cd inja \
-    && cmake . -DBUILD_TESTING=OFF -DINJA_BUILD_TESTS=OFF -DBUILD_BENCHMARK=OFF -DCOVERALLS=OFF \
-    && make install \
-    && cd .. \
-    && rm inja -rf
+    && rm mailio -rf
