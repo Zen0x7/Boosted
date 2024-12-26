@@ -5,7 +5,8 @@ ARG BOOST_VARIANT="release"
 
 ENV TZ="UTC" \
     DEBIAN_FRONTEND=noninteractive \
-    TERM=xterm-256color
+    TERM=xterm-256color \
+    BOOST_ROOT="/srv/boost"
 
 WORKDIR /srv
 
