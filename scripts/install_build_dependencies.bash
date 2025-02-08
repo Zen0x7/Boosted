@@ -25,8 +25,7 @@ apt-get install -y -qq lsb-release \
                        libssl-dev \
                        zlib1g-dev \
                        libcurl4-gnutls-dev \
-                       libprotobuf-dev \
-                       lcov
+                       libprotobuf-dev
 
 ln -fs /usr/share/zoneinfo/$TZ /etc/localtime
 dpkg-reconfigure -f noninteractive tzdata
