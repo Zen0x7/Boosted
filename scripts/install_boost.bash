@@ -10,7 +10,7 @@ else
   DEBUG="off"
 fi
 
-wget https://boostorg.jfrog.io/artifactory/main/release/$BOOST_VERSION/source/boost_$BOOST_VERSION_DASH.tar.gz
+wget https://archives.boost.io/release/$BOOST_VERSION/source/boost_$BOOST_VERSION_DASH.tar.gz
 
 tar -xf boost_$BOOST_VERSION_DASH.tar.gz
 
