@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM debian:latest
 
 ARG BOOST_VERSION="1.87.0"
 ARG BOOST_VARIANT="release"
