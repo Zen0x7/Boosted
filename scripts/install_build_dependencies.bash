@@ -26,7 +26,10 @@ apt-get install -y -qq lsb-release \
                        zlib1g-dev \
                        libcurl4-gnutls-dev \
                        libprotobuf-dev \
-                       python3
+                       python3 \
+                       iputils-ping \
+                       netcat-traditional \
+                       default-mysql-client
 
 ln -fs /usr/share/zoneinfo/$TZ /etc/localtime
 dpkg-reconfigure -f noninteractive tzdata
