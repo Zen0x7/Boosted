@@ -47,3 +47,25 @@ make install
 ldconfig
 cd ../..
 rm bcrypt -Rf
+
+git clone https://github.com/nlohmann/json.git json
+cd json
+mkdir build
+cd build
+cmake .. -DJSON_BuildTests=OFF
+make
+make install
+ldconfig
+cd ../..
+rm json -Rf
+
+git clone https://github.com/pantor/inja inja
+cd inja
+mkdir build
+cd build
+cmake .. -DBUILD_TESTING=OFF -DINJA_EXPORT=OFF
+make
+make install
+ldconfig
+cd ../..
+rm inja -Rf
