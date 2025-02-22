@@ -4,6 +4,6 @@
 
 Shipshape and lightweight debian based docker image prepared and ready to build C++ and Boost Asio and Beast applications.
 
-## Production ready
+## Disclaimer
 
-This image has been built to be used in production environment as boost and extras are compiled using release option.
+This image has been built to be used (at moment) in CI environment with testing purposes.
