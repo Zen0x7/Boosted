@@ -50,6 +50,7 @@ rm bcrypt -Rf
 
 git clone https://github.com/nlohmann/json.git json
 cd json
+git checkout tags/v3.11.3
 mkdir build
 cd build
 cmake .. -DJSON_BuildTests=OFF
@@ -61,11 +62,24 @@ rm json -Rf
 
 git clone https://github.com/pantor/inja inja
 cd inja
+git checkout tags/v3.4.0
 mkdir build
 cd build
-cmake .. -DBUILD_TESTING=OFF -DINJA_EXPORT=OFF
+cmake .. -DBUILD_TESTING=OFF -DINJA_EXPORT=OFF -DINJA_BUILD_TESTS=OFF -DBUILD_BENCHMARK=OFF
 make
 make install
 ldconfig
 cd ../..
 rm inja -Rf
+
+
+git clone https://github.com/getsentry/sentry-native sentry
+cd sentry
+git checkout tags/0.7.20
+git submodule update --init --recursive
+cmake -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cmake --build build --parallel
+cmake --install build --config RelWithDebInfo
+ldconfig
+cd ..
+rm sentry -Rf
