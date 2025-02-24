@@ -42,7 +42,7 @@ cd bcrypt
 mkdir build
 cd build
 cmake ..
-make
+make -j4
 make install
 ldconfig
 cd ../..
@@ -54,7 +54,7 @@ git checkout tags/v3.11.3
 mkdir build
 cd build
 cmake .. -DJSON_BuildTests=OFF
-make
+make -j4
 make install
 ldconfig
 cd ../..
@@ -66,7 +66,7 @@ git checkout tags/v3.4.0
 mkdir build
 cd build
 cmake .. -DBUILD_TESTING=OFF -DINJA_EXPORT=OFF -DINJA_BUILD_TESTS=OFF -DBUILD_BENCHMARK=OFF
-make
+make -j4
 make install
 ldconfig
 cd ../..
@@ -83,3 +83,13 @@ cmake --install build --config RelWithDebInfo
 ldconfig
 cd ..
 rm sentry -Rf
+
+git clone https://github.com/gabime/spdlog.git spdlog
+cd spdlog
+git checkout tags/v1.15.1
+cmake .
+make -j4
+make install
+ldconfig
+cd ..
+rm spdlog -Rf
