@@ -29,7 +29,11 @@ apt-get install -y -qq lsb-release \
                        python3 \
                        iputils-ping \
                        netcat-traditional \
-                       default-mysql-client
+                       default-mysql-client \
+                       lcov \
+                       doxygen \
+                       graphviz \
+                       rsync
 
 ln -fs /usr/share/zoneinfo/$TZ /etc/localtime
 dpkg-reconfigure -f noninteractive tzdata
