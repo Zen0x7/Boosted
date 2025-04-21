@@ -33,7 +33,11 @@ apt-get install -y -qq lsb-release \
                        lcov \
                        doxygen \
                        graphviz \
-                       rsync
+                       rsync \
+                       gcovr \
+                       musl \
+                       musl-dev \
+                       musl-tools
 
 ln -fs /usr/share/zoneinfo/$TZ /etc/localtime
 dpkg-reconfigure -f noninteractive tzdata
@@ -77,23 +81,11 @@ cd ../..
 rm inja -Rf
 
 
-git clone https://github.com/getsentry/sentry-native sentry
-cd sentry
-git checkout tags/0.7.20
-git submodule update --init --recursive
-cmake -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
-cmake --build build --parallel
-cmake --install build --config RelWithDebInfo
-ldconfig
-cd ..
-rm sentry -Rf
-
-git clone https://github.com/gabime/spdlog.git spdlog
-cd spdlog
-git checkout tags/v1.15.1
+git clone https://github.com/jeremydumais/CPP-SMTPClient-library.git smtpclient
+cd smtpclient
 cmake .
 make -j4
 make install
 ldconfig
 cd ..
-rm spdlog -Rf
+rm smtpclient -Rf
